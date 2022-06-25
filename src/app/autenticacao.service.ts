@@ -11,7 +11,7 @@ const TOKEN_KEY = 'token';
 })
 export class AutenticacaoService {
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
-  token = '';
+  token = null;
 
   constructor(private http: HttpClient) {
     this.loadToken();
@@ -28,7 +28,7 @@ export class AutenticacaoService {
   }
 
   login(credenciais: { login, senha }): Observable<any> {
-    return this.http.post('https://lucasreno.kinghost.net/login', credenciais)
+    return this.http.post('http://lucasreno.kinghost.net/login', credenciais)
       .pipe(
         map((data: any) => data.token),
         switchMap(token =>
